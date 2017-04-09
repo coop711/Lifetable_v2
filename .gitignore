@@ -8,5 +8,8 @@
 .log
 .zip
 .Rapp.history
-
+./pics/*.png
+./R/*.html
+./R/*.rda
+./R/*.RData
 .Rproj.user

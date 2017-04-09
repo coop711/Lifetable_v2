@@ -62,6 +62,8 @@ $X \ge 0$, $X \sim F(x)$ => $X \equiv F^{-1}(U), U \sim U(0,1)$, therefore,
 
 $E(X) = E\{F^{-1}(U)\} = \int_{0}^{1} F^{-1}(u)du = \int_0^{\infty} 1-F(x) dx = \int_{0}^{\infty} S(x) dx$
 
+<P style = "page-break-before:always">
+
 # Step by step approach to draw survival function plot
 
 1. Basic plot with points and lines, compare the following threes methods
@@ -74,6 +76,8 @@ plot(graunt)
 plot(graunt, ann = FALSE, xaxt = "n", yaxt = "n", type = "b")
 ```
 
+<P style = "page-break-before:always">
+
 2. Denote the ages and observed survival rates on the axes
 
 ```{r, axes labels,  fig.width = 6, fig.height = 6}
@@ -81,6 +85,8 @@ plot(graunt, ann = FALSE, xaxt = "n", yaxt = "n", type = "b")
 axis(side = 1, at = graunt$x, labels = graunt$x)
 axis(side = 2, at = graunt$xPo.g, labels = graunt$xPo.g)
 ```
+
+<P style = "page-break-before:always">
 
 3. Denote the age 0 and 76 by dotted lines
 
@@ -91,13 +97,19 @@ axis(side = 2, at = graunt$xPo.g, labels = graunt$xPo.g)
 abline(v = c(0, 76), lty = 2)
 ```
 
+<P style = "page-break-before:always">
+
 ### Setting up coordinates for `polygon()` (Clockwise)
 
 ```{r, polygon coordinates}
-(graunt.x <- c(graunt$x, 0))
-(graunt.y <- c(graunt$xPo.g, 0))
+graunt.x <- c(graunt$x, 0)
+graunt.y <- c(graunt$xPo.g, 0)
 graunt.poly <- data.frame(x = graunt.x, y = graunt.y)
 ```
+
+<!--
+<P style = "page-break-before:always">
+-->
 
 4. Shading
 
@@ -112,6 +124,8 @@ polygon(graunt.poly, density = 15, angle = 135)
 points(graunt, pch = 21, col = "black", bg = "white")
 ```
 
+<P style = "page-break-before:always">
+
 5. Grids
 
 ```{r, grids, fig.width = 6, fig.height = 6}
@@ -123,6 +137,8 @@ polygon(graunt.poly, density = 15)
 abline(v = graunt$x, lty = 2)
 points(graunt, pch = 21, col = "black", bg = "white")
 ```
+
+<P style = "page-break-before:always">
 
 6. Title, x-axis label, and y-axis label
 
@@ -140,6 +156,8 @@ y.lab <- "Proportion of Survival (%)"
 title(main = main.title, xlab = x.lab, ylab = y.lab)
 ```
 
+<P style = "page-break-before:always">
+
 ### Area under the curve
 
 The area under the curve can be approximated by the sum of the areas of trapezoids, therefore the area is $\sum_{i=1}^{n-1} (x_{i+1}-x_i)\times\frac{1}{2}(y_i + y_{i+1})$.
@@ -152,6 +170,8 @@ area.R <- function(x, y) {
   }
 area.R(graunt$x, graunt$xPo.g)/100
 ```
+
+<P style = "page-break-before:always">
 
 ## Comparison with US 1993 life table
 
@@ -166,6 +186,8 @@ axis(side = 2, at = graunt$xPo, labels = graunt$xPo.g)
 abline(v = c(0, 76), lty = 2)
 ```
 
+<P style = "page-break-before:always">
+
 2. Add US 1993 survival function
 
 ```{r, us93 added, fig.width = 6, fig.height = 6}
@@ -175,6 +197,8 @@ axis(side = 2, at = graunt$xPo, labels = graunt$xPo.g)
 abline(v = c(0, 76), lty = 2)
 lines(us93, type = "b")
 ```
+
+<P style = "page-break-before:always">
 
 3. Actually, US 1993 life table is truncated at the age 76. Specify that point.
 
@@ -187,6 +211,8 @@ lines(us93, type = "b")
 abline(h = 70, lty = 2)
 ```
 
+<P style = "page-break-before:always">
+
 4. Using `las = 1` to specify 70%.
 
 ```{r, las, fig.width = 6, fig.height = 6}
@@ -198,6 +224,8 @@ lines(us93, type = "b")
 abline(h = 70, lty = 2)
 axis(side = 2, at = 70, labels = 70, las = 1)
 ```
+
+<P style = "page-break-before:always">
 
 ### Setting coordinates for `polygon()`
 
@@ -223,6 +251,8 @@ polygon(us.graunt, density = 15, col = "blue", border = NA)
 points(us.graunt, pch = 21, col = "black", bg = "white")
 ```
 
+<P style = "page-break-before:always">
+
 6. Grids
 
 ```{r, grids for clarity, fig.width = 6, fig.height = 6}
@@ -237,6 +267,8 @@ polygon(us.graunt, density = 15, col = "blue", border = NA)
 abline(v = graunt$x, lty = 2)
 points(us.graunt, pch = 21, col = "black", bg = "white")
 ```
+
+<P style = "page-break-before:always">
 
 7. Title, x-axis and y-axis labels
 
@@ -253,8 +285,10 @@ abline(v = graunt$x, lty = 2)
 points(us.graunt, pch = 21, col = "black", bg = "white")
 main.title.g.us <- "Survival Function of Graunt and US 1993"
 title(main = main.title.g.us, xlab = x.lab, ylab = y.lab)
-dev.copy(device = png, file = "../pics/graunt_us93.png")
+# dev.copy(device = png, file = "../pics/graunt_us93.png")
 ```
+
+<P style = "page-break-before:always">
 
 ### Life expectancy
 
@@ -269,6 +303,8 @@ The area of shaded region is
 ```{r, difference in area}
 area.R(us93$x, us93$xPo.us)/100 - area.R(graunt$x, graunt$xPo.g)/100
 ```
+
+<P style = "page-break-before:always">
 
 # Comparison with Halley's life table
 
@@ -288,6 +324,8 @@ head(halley)
 tail(halley)
 ```
 
+<P style = "page-break-before:always">
+
 ## R base graphics
 
 To make the comparison easy, plot the points at the same age group of Graunt's,  `r graunt$x`. Step by step approach
@@ -298,6 +336,8 @@ To make the comparison easy, plot the points at the same age group of Graunt's, 
 plot(halley, ann = FALSE, xaxt = "n", yaxt = "n", type = "l")
 ```
 
+<P style = "page-break-before:always">
+
 2. Denote the age at 0, 76, and 84 by vertical dotted lines
 
 ```{r, age limits, fig.width = 6, fig.height = 6}
@@ -305,6 +345,7 @@ plot(halley, ann = FALSE, xaxt = "n", yaxt = "n", type = "l")
 abline(v = c(0, 76, 84), lty = 2)
 ```
 
+<P style = "page-break-before:always">
 
 3. Mark the points at `r graunt$x` on Halley's survival function.
     
@@ -315,6 +356,8 @@ abline(v = c(0, 76, 84), lty = 2)
 points(xPo[age.graunt] ~ age[age.graunt], data = halley, pch = 21, col = "black", bg = "white")
 ```
 
+<P style = "page-break-before:always">
+
 ### Using `subset()`
 
 ```{r, with subset, fig.width = 6, fig.height = 6}
@@ -324,6 +367,8 @@ abline(v = c(0, 76, 84), lty = 2)
 points(halley.graunt, pch = 21, col = "black", bg = "white")
 ```
 
+<P style = "page-break-before:always">
+
 4. Add Graunt's survival function
     
 ```{r, Graunt added, fig.width = 6, fig.height = 6}
@@ -332,6 +377,8 @@ abline(v = c(0, 76, 84), lty = 2)
 points(halley.graunt, pch = 21, col = "black", bg = "white")
 lines(graunt, type = "b", pch = 21, col = "black", bg = "white")
 ```
+
+<P style = "page-break-before:always">
 
 5. x-axis label and y-axis label with `las = 1`. Add Halley's proprtion of survival at `age = 6`.
     
@@ -345,6 +392,8 @@ axis(side = 2, at = graunt$xPo.g, labels = graunt$xPo.g, las = 1)
 xPo.halley.age.6 <- halley$xPo[age == 6]
 axis(side = 2, at = xPo.halley.age.6, labels = xPo.halley.age.6, las = 1)
 ```
+
+<P style = "page-break-before:always">
 
 6. Specify the developers at proper coordinates with `text()`
 
@@ -360,6 +409,8 @@ axis(side = 2, at = xPo.halley.age.6, labels = xPo.halley.age.6, las = 1)
 text(x = c(16, 36), y = c(20, 50), label = c("Graunt", "Halley"))
 ```
 
+<P style = "page-break-before:always">
+
 7. Main title, x-axis label, and y-axis label
     
 ```{r, title and labels, fig.width = 6, fig.height = 6}
@@ -374,6 +425,8 @@ text(x = c(16, 36), y = c(20, 50), label = c("Graunt", "Halley"))
 main.title.2 <- "Survival Function of Graunt and Halley"
 title(main = main.title.2, xlab = x.lab, ylab = y.lab)
 ```
+
+<P style = "page-break-before:always">
 
 ## Polygon
 
@@ -395,6 +448,8 @@ poly.2.y <- c(52.8, halley$xPo[12:85], graunt$xPo.g[9:3])
 poly.lower <- data.frame(x = poly.2.x, y = poly.2.y)
 ```
 
+<P style = "page-break-before:always">
+
 8. Shading upper region first 
 
 ```{r, shading upper region, fig.width = 6, fig.height = 6}
@@ -409,6 +464,8 @@ text(x = c(16, 36), y = c(20, 50), label = c("Graunt", "Halley"))
 title(main = main.title.2, xlab = x.lab, ylab = y.lab)
 polygon(poly.upper, angle = 45, density = 15, col = "red", border = NA)
 ```
+
+<P style = "page-break-before:always">
 
 9. Shading lower region next 
 
@@ -425,6 +482,8 @@ title(main = main.title.2, xlab = x.lab, ylab = y.lab)
 polygon(poly.upper, angle = 45, density = 15, col = "red")
 polygon(poly.lower, angle = 45, density = 15, col = "green", border = NA)
 ```
+
+<P style = "page-break-before:always">
 
 10. Fill the points. Extra points at the 84. 
 
@@ -443,8 +502,12 @@ polygon(poly.lower, angle = 45, density = 15, col = "green", border = NA)
 points(graunt, pch = 21, col = "black", bg = "white")
 points(halley.graunt, pch = 21, col = "black", bg = "white")
 points(x = 84, y = halley$xPo[85], pch = 21, col = "black", bg = "white")
-dev.copy(device = png, file = "../pics/graunt_halley.png")
+# dev.copy(device = png, file = "../pics/graunt_halley.png")
 ```
+
+<!--
+<P style = "page-break-before:always">
+-->
 
 ### Life expectancy
 
@@ -454,6 +517,8 @@ Compute the difference of life expectancies
 (life.exp.halley <- area.R(halley$age, halley$xPo)/100)
 (life.exp.graunt <- area.R(graunt$x, graunt$xPo.g)/100)
 ```
+
+<P style = "page-break-before:always">
 
 # Graunt, Halley, and US 1993
 
@@ -477,6 +542,10 @@ poly.us <- data.frame(x = poly.3.x, y = poly.3.y)
 poly.us.76 <- subset(poly.us, poly.us$x <= 76)
 ```
 
+<!--
+<P style = "page-break-before:always">
+-->
+
 ### Straight to Polygon
 
 ```{r, Graunt Halley and US 1993 together, fig.width = 6, fig.height = 6}
@@ -499,8 +568,10 @@ points(halley.graunt, pch = 21, col = "black", bg = "white")
 points(us93.2, pch = 21, col = "black", bg = "white")
 points(x = 84, y = halley$xPo[85], pch = 21, col = "black", bg = "white")
 text(x = c(16, 36, 70), y = c(25, 50, 90), label = c("Graunt", "Halley", "US93"))
-dev.copy(device = png, file = "../pics/graunt_halley_us93_poly.png")
+# dev.copy(device = png, file = "../pics/graunt_halley_us93_poly.png")
 ```
+
+<P style = "page-break-before:always">
 
 ## ggplot 
 
@@ -531,6 +602,8 @@ levels(graunt.us.melt$times) <- c("Graunt", "US1993")
 str(graunt.us.melt)
 ```
 
+<P style = "page-break-before:always">
+
 # Graunt
 
 ## Structure of ggplot
@@ -538,23 +611,50 @@ str(graunt.us.melt)
 ```{r, geom aes, fig.width = 6, fig.height = 6}
 (g1 <- ggplot() + 
   geom_line(data = graunt, aes(x = graunt$x, y = graunt$xPo)))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (g2 <- g1 +
   geom_point(data = graunt, aes(x = graunt$x, y = graunt$xPo), shape = 21, fill = "white"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (g3 <- g2 +
   theme_bw())
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (g4 <- g3 +
    xlab(x.lab) + 
    ylab(y.lab) + 
    ggtitle(main.title) +
    scale_x_continuous(breaks = graunt$x) + 
    scale_y_continuous(breaks = graunt$xPo.g))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (g5 <- g4 +
   geom_vline(xintercept = graunt$x, linetype = "dotted") +
   geom_hline(yintercept = 0, linetype = "dotted"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (pg4 <- g4 +
   geom_polygon(data = graunt.poly, aes(x = x, y = y), alpha = 0.3, fill = "grey"))
-ggsave("../pics/graunt_poly_ggplot.png", pg4)
+# ggsave("../pics/graunt_poly_ggplot.png", pg4)
 ```
+
+<P style = "page-break-before:always">
 
 # Graunt and US 1993
 
@@ -567,11 +667,23 @@ Step by step approach to understand the grammar of ggplot
 ```{r, geom_point geom_line, fig.width = 6, fig.height = 6}
 (gu1 <- ggplot() + 
   geom_line(data = graunt.us.melt, aes(x = x, y = xPo, colour = times)))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (gu2 <- gu1 + 
   geom_point(data = graunt.us.melt, aes(x = x, y = xPo, colour = times), shape = 21, fill = "white"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (gu3 <- gu2 + 
   theme_bw()) 
 ```
+
+<P style = "page-break-before:always">
 
 ## Polygon 
 
@@ -580,9 +692,16 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
 ```{r, polygon, fig.width = 6, fig.height = 6}
 (gup3 <- gu3 + 
   geom_polygon(data = us.graunt, aes(x = x, y = y), alpha = 0.3, fill = "blue"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (gup4 <- gup3 + 
   guides(colour = "none"))
 ```
+
+<P style = "page-break-before:always">
 
 ## Change default annotations
 
@@ -596,6 +715,8 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
    ylab(y.lab))
 ```
 
+<P style = "page-break-before:always">
+
 2. Add main title
 
 ```{r, ggtitle, fig.width = 6, fig.height = 6}
@@ -604,6 +725,8 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
    ylab(y.lab) + 
    ggtitle(main.title.g.us))
 ```
+
+<P style = "page-break-before:always">
 
 3. Change legend title
     
@@ -614,6 +737,8 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
    ggtitle(main.title.g.us) +
    labs(colour = "Era"))
 ```
+
+<P style = "page-break-before:always">
 
 4. Change legends.
     
@@ -626,6 +751,8 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
    scale_colour_discrete(labels = c("Graunt Era", "US 1993")))
 ```
 
+<P style = "page-break-before:always">
+
 5. Place legends inside the plot
 
 ```{r, legends inside, fig.width = 6, fig.height = 6}
@@ -633,14 +760,18 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
    theme(legend.position = c(0.8, 0.5)))
 ```
 
+<P style = "page-break-before:always">
+
 6. Change x-axis and y-axis tick marks
 
 ```{r, axis tick marks, fig.width = 6, fig.height = 6}
 (gu6 <- gu5 + 
    scale_x_continuous(breaks = graunt$x) + 
    scale_y_continuous(breaks = graunt$xPo.g))
-ggsave("../pics/graunt_us_ggplot.png", gu6)
+# ggsave("../pics/graunt_us_ggplot.png", gu6)
 ```
+
+<P style = "page-break-before:always">
 
 ## Polygon
 
@@ -652,6 +783,8 @@ Add information to the plot drawn with `polygon()`
 gup4
 ```
 
+<P style = "page-break-before:always">
+
 2. Main title, x-axis and y-axis labels
 
 ```{r, title and axis labels,  fig.width = 6, fig.height = 6}
@@ -661,6 +794,8 @@ gup4
    ggtitle(main.title.g.us))
 ```
 
+<P style = "page-break-before:always">
+
 3. `"Graunt Era"`, `"US 1993"`, `"Difference of Life Expectancies"` at proper positions
     
 ```{r, text polygon,  fig.width = 6, fig.height = 6}
@@ -668,13 +803,17 @@ gup4
    annotate("text", x = c(20, 40, 70), y = c(20, 60, 90), label = c("Graunt Era", "Difference of\nLife Expectancies", "US 1993"), family = "Helvetica"))
 ```
 
+<P style = "page-break-before:always">
+
 4. x-axis and y-axis tick marks
 
 ```{r, familiar axis labels, fig.width = 6, fig.height = 6}
 (gup7 <- gup6 + 
    scale_x_continuous(breaks = graunt$x) + scale_y_continuous(breaks = graunt$xPo.g))
-ggsave("../pics/graunt_us_poly.png", gup7)
+# ggsave("../pics/graunt_us_poly.png", gup7)
 ```
+
+<P style = "page-break-before:always">
 
 # Graunt and Halley
 
@@ -688,26 +827,45 @@ str(graunt.halley.melt)
 graunt.halley.melt <- graunt.halley.melt[-4]
 (graunt.halley.melt.g <- subset(graunt.halley.melt, graunt.halley.melt$x %in% graunt$x))
 ```
- 
+
+<P style = "page-break-before:always">
+
 ## Survival Function, Step by Step
 
 ```{r, first plot for Graunt and Halley, fig.width = 6, fig.height = 6}
 (gh1 <- ggplot() + 
   geom_line(data = graunt.halley.melt, aes(x = x, y = xPo, colour = Who)))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (gh2 <- gh1 + 
   geom_point(data = graunt.halley.melt.g, aes(x = x, y = xPo, colour = Who), shape = 21, fill = "white"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (gh3 <- gh2 + 
   theme_bw() + 
   xlab(x.lab) + 
   ylab(y.lab) + 
   ggtitle(main.title.2))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (gh4 <- gh3 + 
   theme(legend.position = c(0.8, 0.8)) +
   annotate("text", x = c(16, 36), y = c(20, 50), label = c("Graunt", "Halley")) +
   scale_x_continuous(breaks = c(graunt$x, 84)) + 
   scale_y_continuous(breaks = c(graunt$xPo.g, xPo.halley.age.6)))
-ggsave("../pics/graunt_halley_ggplot.png", gh4)
+# ggsave("../pics/graunt_halley_ggplot.png", gh4)
 ```
+
+<P style = "page-break-before:always">
 
 ## Polygon
 
@@ -716,12 +874,24 @@ Reuse `poly.upper` data frame and `poly.lower` data frame.
 ```{r, polygon for Graunt and Halley, fig.width = 6, fig.height = 6}
 (ghp4 <- gh4 + 
   geom_polygon(data = poly.upper, aes(x = x, y = y), alpha = 0.3, fill = "red"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghp5 <- ghp4 + 
   geom_polygon(data = poly.lower, aes(x = x, y = y), alpha = 0.3, fill = "green"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghp5 <- ghp5 +
   geom_point(data = data.frame(x = 84, y = halley$xPo[85]), aes(x = x, y = y),  colour = 3, shape = 21, fill = "white"))
-ggsave("../pics/graunt_halley_poly_ggplot.png", ghp5)
+# ggsave("../pics/graunt_halley_poly_ggplot.png", ghp5)
 ```
+
+<P style = "page-break-before:always">
 
 # Graunt, Halley, and US93
 
@@ -740,34 +910,65 @@ ghu.melt.g <- ghu.melt[ghu.melt$x %in% graunt$x, ]
 ```{r, Survival function plot for Graunt Halley and US93, fig.width = 6, fig.height = 6}
 (ghu1 <- ggplot() + 
   geom_line(data = ghu.melt, aes(x = x, y = xPo, colour = Who)))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghu2 <- ghu1 + 
   geom_point(data = ghu.melt.g, aes(x = x, y = xPo, colour = Who), shape = 21, fill = "white"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghu3 <- ghu2 + 
   theme_bw() + 
   xlab(x.lab) + 
   ylab(y.lab) + 
   ggtitle(main.title.3))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghu4 <- ghu3 + 
   theme(legend.position = c(0.2, 0.2)) +
   annotate("text", x = c(36, 36, 70), y = c(25, 50, 90), label = c("Graunt", "Halley", "US93")) +
   scale_x_continuous(breaks = c(graunt$x, 84)) + 
   scale_y_continuous(breaks = c(graunt$xPo.g, xPo.halley.age.6)))
-ggsave("../pics/graunt_halley_us_ggplot.png", ghu4)
+# ggsave("../pics/graunt_halley_us_ggplot.png", ghu4)
 ```
 
-## Polygon
+<P style = "page-break-before:always">
 
+## Polygon
 
 ```{r, polygon for Graunt Halley and US93, fig.width = 6, fig.height = 6}
 (ghup4 <- ghu4 + 
   geom_polygon(data = poly.upper, aes(x = x, y = y), alpha = 0.3, fill = "red"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghup5 <- ghup4 + 
   geom_polygon(data = poly.lower.76, aes(x = x, y = y), alpha = 0.3, fill = "green"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghup6 <- ghup5 +
   geom_polygon(data = poly.us.76, aes(x = x, y = y), alpha = 0.3, fill = "blue"))
+```
+
+<P style = "page-break-before:always">
+
+```{r, fig.width = 6, fig.height = 6}
 (ghup7 <- ghup6 +
   geom_point(data = data.frame(x = 84, y = halley$xPo[85]), aes(x = x, y = y),  colour = 3, shape = 21, fill = "white"))
-ggsave("../pics/graunt_halley_us_poly_ggplot.png", ghup7)
+# ggsave("../pics/graunt_halley_us_poly_ggplot.png", ghup7)
 ```
 
 ### dump() and source()
