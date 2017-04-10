@@ -479,7 +479,7 @@ axis(side = 2, at = graunt$xPo.g, labels = graunt$xPo.g, las = 1)
 axis(side = 2, at = xPo.halley.age.6, labels = xPo.halley.age.6, las = 1)
 text(x = c(16, 36), y = c(20, 50), label = c("Graunt", "Halley"))
 title(main = main.title.2, xlab = x.lab, ylab = y.lab)
-polygon(poly.upper, angle = 45, density = 15, col = "red")
+polygon(poly.upper, angle = 45, density = 15, col = "red", border = NA)
 polygon(poly.lower, angle = 45, density = 15, col = "green", border = NA)
 ```
 
@@ -800,7 +800,7 @@ gup4
     
 ```{r, text polygon,  fig.width = 6, fig.height = 6}
 (gup6 <- gup5 + 
-   annotate("text", x = c(20, 40, 70), y = c(20, 60, 90), label = c("Graunt Era", "Difference of\nLife Expectancies", "US 1993"), family = "Helvetica"))
+   annotate("text", x = c(20, 40, 70), y = c(20, 60, 90), label = c("Graunt Era", "Difference of\nLife Expectancies", "US 1993"), family = ""))
 ```
 
 <P style = "page-break-before:always">
@@ -809,7 +809,8 @@ gup4
 
 ```{r, familiar axis labels, fig.width = 6, fig.height = 6}
 (gup7 <- gup6 + 
-   scale_x_continuous(breaks = graunt$x) + scale_y_continuous(breaks = graunt$xPo.g))
+   scale_x_continuous(breaks = graunt$x) + 
+   scale_y_continuous(breaks = graunt$xPo.g))
 # ggsave("../pics/graunt_us_poly.png", gup7)
 ```
 
@@ -902,6 +903,7 @@ Reuse `poly.upper` data frame and `poly.lower` data frame.
 # names(us93.2) <- c("x", "US93")
 ghu.melt <- melt(list(graunt.2, halley.2, us93.2), id.vars = "x", value.name = "xPo", variable.name = "Who")
 ghu.melt.g <- ghu.melt[ghu.melt$x %in% graunt$x, ]
+ghu.melt.g
 # main.title.3 <- "Survival Function Plots"
 ```
 
@@ -977,5 +979,5 @@ ghu.melt.g <- ghu.melt[ghu.melt$x %in% graunt$x, ]
 
 ```{r, dump and save}
 dump("area.R", file = "area.R")
-save.image("graunt_halley_160406.rda")
+save.image("./graunt_halley_160406.RData")
 ```
