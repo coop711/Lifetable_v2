@@ -285,7 +285,7 @@ abline(v = graunt$x, lty = 2)
 points(us.graunt, pch = 21, col = "black", bg = "white")
 main.title.g.us <- "Survival Function of Graunt and US 1993"
 title(main = main.title.g.us, xlab = x.lab, ylab = y.lab)
-# dev.copy(device = png, file = "../pics/graunt_us93.png")
+# dev.copy(device = png, file = "../pics/graunt.us93.png")
 ```
 
 <P style = "page-break-before:always">
@@ -568,7 +568,7 @@ points(halley.graunt, pch = 21, col = "black", bg = "white")
 points(us93.2, pch = 21, col = "black", bg = "white")
 points(x = 84, y = halley$xPo[85], pch = 21, col = "black", bg = "white")
 text(x = c(16, 36, 70), y = c(25, 50, 90), label = c("Graunt", "Halley", "US93"))
-# dev.copy(device = png, file = "../pics/graunt_halley_us93_poly.png")
+# dev.copy(device = png, file = "../pics/graunt_halley.us93_poly.png")
 ```
 
 <P style = "page-break-before:always">
@@ -768,7 +768,7 @@ Reuse `us.graunt` which contains `x = us.graunt.x` and `y = us.graunt.y` for `po
 (gu6 <- gu5 + 
    scale_x_continuous(breaks = graunt$x) + 
    scale_y_continuous(breaks = graunt$xPo.g))
-# ggsave("../pics/graunt_us_ggplot.png", gu6)
+# ggsave("../pics/graunt.us_ggplot.png", gu6)
 ```
 
 <P style = "page-break-before:always">
@@ -811,7 +811,7 @@ gup4
 (gup7 <- gup6 + 
    scale_x_continuous(breaks = graunt$x) + 
    scale_y_continuous(breaks = graunt$xPo.g))
-# ggsave("../pics/graunt_us_poly.png", gup7)
+# ggsave("../pics/graunt.us_poly.png", gup7)
 ```
 
 <P style = "page-break-before:always">
@@ -939,7 +939,7 @@ ghu.melt.g
   annotate("text", x = c(36, 36, 70), y = c(25, 50, 90), label = c("Graunt", "Halley", "US93")) +
   scale_x_continuous(breaks = c(graunt$x, 84)) + 
   scale_y_continuous(breaks = c(graunt$xPo.g, xPo.halley.age.6)))
-# ggsave("../pics/graunt_halley_us_ggplot.png", ghu4)
+# ggsave("../pics/graunt_halley.us_ggplot.png", ghu4)
 ```
 
 <P style = "page-break-before:always">
@@ -970,7 +970,7 @@ ghu.melt.g
 ```{r, fig.width = 6, fig.height = 6}
 (ghup7 <- ghup6 +
   geom_point(data = data.frame(x = 84, y = halley$xPo[85]), aes(x = x, y = y),  colour = 3, shape = 21, fill = "white"))
-# ggsave("../pics/graunt_halley_us_poly_ggplot.png", ghup7)
+# ggsave("../pics/graunt_halley.us_poly_ggplot.png", ghup7)
 ```
 
 ### dump() and source()
